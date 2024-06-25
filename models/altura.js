@@ -7,9 +7,12 @@ const Altura = sequelize.define('Altura', {
     primaryKey: true,
     autoIncrement: true,
   },
-  altura: DataTypes.STRING,
+  altura: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 }, {
-  tableName: 'altura',
+  tableName: 'altura', // Assegure que o nome da tabela esteja em plural se necessário
   timestamps: false,
 });
 

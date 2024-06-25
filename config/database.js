@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: 'mysql',
-    logging: console.log,       // Habilita o log de todas as queries SQL executadas
+    logging: console.log,
   }
 );
 

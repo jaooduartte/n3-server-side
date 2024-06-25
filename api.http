@@ -3,9 +3,9 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "cpf": "12345670905",
-  "nome": "Joao Silva",
-  "email": "joao@example.com",
+  "cpf": "12345670907",
+  "nome": "Camargo Silva",
+  "email": "camargo@example.com",
   "senha": "senha123"
 }
 
@@ -25,7 +25,7 @@ GET http://localhost:3000/tutors
 Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Obter um Tutor por ID
-GET http://localhost:3000/tutors/1
+GET http://localhost:3000/tutors/3
 Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Atualizar um Tutor
@@ -39,7 +39,7 @@ Authorization: Bearer {{tokenacc.response.body.token}}
 }
 
 ### Deletar um Tutor
-DELETE http://localhost:3000/tutors/1
+DELETE http://localhost:3000/tutors/3
 Authorization: Bearer {{tokenacc.response.body.token}}
 
 
@@ -53,7 +53,7 @@ Authorization: Bearer {{tokenacc.response.body.token}}
   "nome_pet": "Rex",
   "genero_pet": "Masculino",
   "altura_valor": 20.0,
-  "tutorId": 1
+  "tutorId": 2
 }
 
 ### Listar Todos os Pets
@@ -78,13 +78,10 @@ Authorization: Bearer {{tokenacc.response.body.token}}
 }
 
 ### Deletar um Pet
-DELETE http://localhost:3000/pets/3
+DELETE http://localhost:3000/pets/2
 Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Consultar Pets por Tutor
 GET http://localhost:3000/tutors/1/pets
 Authorization: Bearer {{tokenacc.response.body.token}}
 
-### Consultar Pets por Altura
-GET http://localhost:3000/altura/3/pets
-Authorization: Bearer {{tokenacc.response.body.token}}

@@ -38,44 +38,48 @@ export const getPets = async (req, res) => {
         res.status(400).json({ error: err.message });
     }
 };
-
 export const getPetById = async (req, res) => {
     try {
-      const { id } = req.params;
-      const pet = await Pet.findByPk(id, { include: [Tutor, Altura] });
-      if (pet) {
-        res.status(200).json(pet);
-      } else {
-        res.status(404).json({ error: 'Pet not found' });
-      }
-    } catch (err) {
-      res.status(400).json({ error: err.message });
-    }
-  };
-
-export const updatePet = async (req, res) => {
-    try {
         const { id } = req.params;
-        const { codigo_pet, nome_pet, genero_pet, altura_valor, tutorId } = req.body;
-        let alturaId;
-        if (altura_valor <= 15) {
-            alturaId = 1;
-        } else if (altura_valor <= 45) {
-            alturaId = 2;
-        } else {
-            alturaId = 3;
-        }
-        const [updated] = await Pet.update({ codigo_pet, nome_pet, genero_pet, altura_valor, alturaId, tutorId }, {
-            where: { id }
+        const pet = await Pet.findByPk(id, {
+            include: [
+                { model: Tutor, as: 'tutor' },  // Usar o alias definido na associação
+                { model: Altura, as: 'altura' } // Usar o alias definido na associação
+            ]
         });
-        if (updated) {
-            const updatedPet = await Pet.findByPk(id);
-            res.status(200).json(updatedPet);
+        if (pet) {
+            res.status(200).json(pet);
         } else {
             res.status(404).json({ error: 'Pet not found' });
         }
     } catch (err) {
         res.status(400).json({ error: err.message });
+    }
+};
+
+export const updatePet = async (req, res) => {
+    const { id } = req.params;  // Garantir que está capturando o 'id' corretamente
+    const { codigo_pet, nome_pet, genero_pet, altura_valor, tutorId } = req.body;
+    
+    try {
+        const pet = await Pet.findByPk(id);  // Primeiro, encontrar o pet pelo ID
+        if (!pet) {
+            return res.status(404).json({ error: 'Pet not found' });  // Se não encontrar, retorna erro
+        }
+
+        // Se encontrar, atualiza as informações
+        pet.codigo_pet = codigo_pet;
+        pet.nome_pet = nome_pet;
+        pet.genero_pet = genero_pet;
+        pet.altura_valor = altura_valor;
+        pet.tutorId = tutorId;
+        
+        await pet.save();  // Salva as atualizações no banco de dados
+
+        res.status(200).json(pet);  // Retorna o pet atualizado
+    } catch (err) {
+        console.error("Erro ao atualizar o pet: ", err);
+        res.status(400).json({ error: 'Error updating pet' });
     }
 };
 

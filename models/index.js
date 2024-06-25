@@ -1,20 +1,21 @@
+// models/index.js
 import sequelize from '../config/database.js';
 import Altura from './altura.js';
-import Pet from './pet.js';
 import Tutor from './tutor.js';
+import Pet from './pet.js';
 
-// Definir associações
+// Define as associações aqui
+Pet.belongsTo(Altura, { foreignKey: 'alturaId', as: 'altura' });
 Altura.hasMany(Pet, { foreignKey: 'alturaId' });
-Pet.belongsTo(Altura, { foreignKey: 'alturaId' });
 
+Pet.belongsTo(Tutor, { foreignKey: 'tutorId', as: 'tutor' });
 Tutor.hasMany(Pet, { foreignKey: 'tutorId' });
-Pet.belongsTo(Tutor, { foreignKey: 'tutorId' });
 
 const db = {
   sequelize,
   Altura,
-  Pet,
   Tutor,
+  Pet
 };
 
 export default db;
