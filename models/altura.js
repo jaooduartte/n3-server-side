@@ -12,7 +12,7 @@ const Altura = sequelize.define('Altura', {
     allowNull: false,
   },
 }, {
-  tableName: 'altura', // Assegure que o nome da tabela esteja em plural se necessário
+  tableName: 'altura',
   timestamps: false,
 });
 

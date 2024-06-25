@@ -3,7 +3,7 @@ const SECRET_KEY = 'your_secret_key';
 
 export function generateToken(user) {
   return jwt.sign({ id: user.id }, SECRET_KEY, {
-    expiresIn: 86400 // expira em 24 horas
+    expiresIn: 86400 // Expira em 24 horas
   });
 }
 

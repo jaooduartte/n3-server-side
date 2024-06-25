@@ -16,23 +16,23 @@ const Tutor = sequelize.define('Tutor', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,  // Garantir que o email seja único
+    unique: true,
   },
   cpf: {
-    type: DataTypes.STRING(11),  // Especifica o tamanho do CPF para validação
+    type: DataTypes.STRING(11),
     allowNull: false,
-    unique: true,  // Garantir que o CPF seja único
+    unique: true,
   },
   senha: {
-    type: DataTypes.STRING,  // Adicionar campo para a senha
+    type: DataTypes.STRING,
     allowNull: false,
   }
 }, {
-  tableName: 'tutors',  // Garantir que o nome da tabela esteja correto
-  timestamps: false,    // Desativa os timestamps se não estiverem sendo usados
+  tableName: 'tutors',  
+  timestamps: false,    
 });
 
-Tutor.hasMany(Pet, { foreignKey: 'tutorId' });  // Associação com a tabela Pet
-Pet.belongsTo(Tutor, { foreignKey: 'tutorId' });  // Associação inversa
+Tutor.hasMany(Pet, { foreignKey: 'tutorId' });
+Pet.belongsTo(Tutor, { foreignKey: 'tutorId' });
 
 export default Tutor;

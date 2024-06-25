@@ -1,4 +1,4 @@
-// routes/tutorRoutes.js
+
 import express from 'express';
 import { registerTutor, getTutors, getTutorById, updateTutor, deleteTutor } from '../controllers/tutorController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
@@ -12,7 +12,7 @@ router.get('/:id', getTutorById);
 router.put('/:id', updateTutor);
 router.delete('/:id', deleteTutor);
 
-// Rota adicional para listar pets por tutor
+
 router.get('/:id/pets', authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;

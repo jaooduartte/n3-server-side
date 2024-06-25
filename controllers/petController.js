@@ -1,4 +1,3 @@
-// controllers/petController.js
 import Pet from '../models/pet.js';
 import Altura from '../models/altura.js';
 import Tutor from '../models/tutor.js';
@@ -7,7 +6,7 @@ export const createPet = async (req, res) => {
     console.log("Received data:", req.body);
     try {
         const { codigo_pet, nome_pet, genero_pet, altura_valor, tutorId } = req.body;
-        // Verificar se o tutorId existe na tabela TUTORS antes de inserir
+        
         const tutor = await Tutor.findByPk(tutorId);
         if (!tutor) {
             return res.status(404).json({ error: 'Tutor não encontrado' });
@@ -15,11 +14,11 @@ export const createPet = async (req, res) => {
         
         let alturaId;
         if (altura_valor <= 15) {
-            alturaId = 1; // Assume IDs predefinidos para 'pequeno'
+            alturaId = 1;
         } else if (altura_valor <= 45) {
-            alturaId = 2; // 'médio'
+            alturaId = 2;
         } else {
-            alturaId = 3; // 'alto'
+            alturaId = 3;
         }
         const newPet = await Pet.create({
             codigo_pet, nome_pet, genero_pet, altura_valor, alturaId, tutorId
@@ -43,8 +42,8 @@ export const getPetById = async (req, res) => {
         const { id } = req.params;
         const pet = await Pet.findByPk(id, {
             include: [
-                { model: Tutor, as: 'tutor' },  // Usar o alias definido na associação
-                { model: Altura, as: 'altura' } // Usar o alias definido na associação
+                { model: Tutor, as: 'tutor' },
+                { model: Altura, as: 'altura' } 
             ]
         });
         if (pet) {
@@ -58,25 +57,25 @@ export const getPetById = async (req, res) => {
 };
 
 export const updatePet = async (req, res) => {
-    const { id } = req.params;  // Garantir que está capturando o 'id' corretamente
+    const { id } = req.params;
     const { codigo_pet, nome_pet, genero_pet, altura_valor, tutorId } = req.body;
     
     try {
-        const pet = await Pet.findByPk(id);  // Primeiro, encontrar o pet pelo ID
+        const pet = await Pet.findByPk(id);
         if (!pet) {
-            return res.status(404).json({ error: 'Pet not found' });  // Se não encontrar, retorna erro
+            return res.status(404).json({ error: 'Pet not found' });
         }
 
-        // Se encontrar, atualiza as informações
+        
         pet.codigo_pet = codigo_pet;
         pet.nome_pet = nome_pet;
         pet.genero_pet = genero_pet;
         pet.altura_valor = altura_valor;
         pet.tutorId = tutorId;
         
-        await pet.save();  // Salva as atualizações no banco de dados
+        await pet.save();
 
-        res.status(200).json(pet);  // Retorna o pet atualizado
+        res.status(200).json(pet);
     } catch (err) {
         console.error("Erro ao atualizar o pet: ", err);
         res.status(400).json({ error: 'Error updating pet' });
