@@ -3,9 +3,9 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "cpf": "12345678902",
-  "nome": "Joao Silva",
-  "email": "joao@example.com",
+  "cpf": "12345678903",
+  "nome": "Eder Silva",
+  "email": "eder@example.com",
   "senha": "senha123"
 }
 
@@ -24,21 +24,21 @@ GET http://localhost:3000/tutors
 Authorization: Bearer <Your_Token_Here>
 
 ### Obter um Tutor por ID
-GET http://localhost:3000/tutors/7
+GET http://localhost:3000/tutors/11
 Authorization: Bearer <Your_Token_Here>
 
 ### Atualizar um Tutor
-PUT http://localhost:3000/tutors/7
+PUT http://localhost:3000/tutors/11
 Content-Type: application/json
 Authorization: Bearer <Your_Token_Here>
 
 {
-  "email": "updated_joao@example.com",
+  "email": "updated_eder@example.com",
   "senha": "nova_senha123"
 }
 
 ### Deletar um Tutor
-DELETE http://localhost:3000/tutors/7
+DELETE http://localhost:3000/tutors/11
 Authorization: Bearer <Your_Token_Here>
 
 ### Registrar um Pet
