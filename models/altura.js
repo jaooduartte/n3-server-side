@@ -1,16 +1,16 @@
-// models/altura.js
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
 const Altura = sequelize.define('Altura', {
-    id_altura: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    altura: DataTypes.STRING
+  id_altura: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  altura: DataTypes.STRING,
 }, {
-    timestamps: false
+  tableName: 'altura',
+  timestamps: false,
 });
 
 export default Altura;

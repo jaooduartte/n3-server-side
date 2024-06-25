@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Altura (
 INSERT INTO Altura (altura) VALUES ('pequeno'), ('médio'), ('alto');
 
 -- Cria a tabela Tutor
-CREATE TABLE IF NOT EXISTS Tutor (
+CREATE TABLE IF NOT EXISTS tutors (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cpf VARCHAR(11) NOT NULL,
     nome VARCHAR(255) NOT NULL,

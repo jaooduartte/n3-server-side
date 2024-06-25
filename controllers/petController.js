@@ -41,17 +41,17 @@ export const getPets = async (req, res) => {
 
 export const getPetById = async (req, res) => {
     try {
-        const { id } = req.params;
-        const pet = await Pet.findByPk(id, { include: [Tutor, Altura] });
-        if (pet) {
-            res.status(200).json(pet);
-        } else {
-            res.status(404).json({ error: 'Pet not found' });
-        }
+      const { id } = req.params;
+      const pet = await Pet.findByPk(id, { include: [Tutor, Altura] });
+      if (pet) {
+        res.status(200).json(pet);
+      } else {
+        res.status(404).json({ error: 'Pet not found' });
+      }
     } catch (err) {
-        res.status(400).json({ error: err.message });
+      res.status(400).json({ error: err.message });
     }
-};
+  };
 
 export const updatePet = async (req, res) => {
     try {

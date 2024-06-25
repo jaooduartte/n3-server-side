@@ -3,86 +3,88 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "cpf": "12345678903",
-  "nome": "Eder Silva",
-  "email": "eder@example.com",
+  "cpf": "12345670905",
+  "nome": "Joao Silva",
+  "email": "joao@example.com",
   "senha": "senha123"
 }
 
+###
 
-### Login de Tutor
+# @name tokenacc
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "pedro@example.com",
+  "email": "joao@example.com",
   "senha": "senha123"
 }
 
 ### Listar Todos os Tutores
 GET http://localhost:3000/tutors
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Obter um Tutor por ID
-GET http://localhost:3000/tutors/11
-Authorization: Bearer <Your_Token_Here>
+GET http://localhost:3000/tutors/1
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Atualizar um Tutor
-PUT http://localhost:3000/tutors/11
+PUT http://localhost:3000/tutors/1
 Content-Type: application/json
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 {
-  "email": "updated_eder@example.com",
+  "email": "updated_joao@example.com",
   "senha": "nova_senha123"
 }
 
 ### Deletar um Tutor
-DELETE http://localhost:3000/tutors/11
-Authorization: Bearer <Your_Token_Here>
+DELETE http://localhost:3000/tutors/1
+Authorization: Bearer {{tokenacc.response.body.token}}
+
 
 ### Registrar um Pet
 POST http://localhost:3000/pets
 Content-Type: application/json
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 {
   "codigo_pet": "PET123",
   "nome_pet": "Rex",
   "genero_pet": "Masculino",
   "altura_valor": 20.0,
-  "tutorId": 9
+  "tutorId": 1
 }
 
 ### Listar Todos os Pets
 GET http://localhost:3000/pets
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Obter um Pet por ID
 GET http://localhost:3000/pets/1
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Atualizar um Pet
 PUT http://localhost:3000/pets/1
 Content-Type: application/json
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 {
   "codigo_pet": "PET123",
   "nome_pet": "Rex Updated",
   "genero_pet": "Masculino",
   "altura_valor": 25.0,
-  "tutorId": 9
+  "tutorId": 1
 }
 
 ### Deletar um Pet
-DELETE http://localhost:3000/pets/1
-Authorization: Bearer <Your_Token_Here>
+DELETE http://localhost:3000/pets/3
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Consultar Pets por Tutor
 GET http://localhost:3000/tutors/1/pets
-Authorization: Bearer <Your_Token_Here>
+Authorization: Bearer {{tokenacc.response.body.token}}
 
 ### Consultar Pets por Altura
-GET http://localhost:3000/altura/2/pets
-Authorization: Bearer <Your_Token_Here>
+GET http://localhost:3000/altura/3/pets
+Authorization: Bearer {{tokenacc.response.body.token}}

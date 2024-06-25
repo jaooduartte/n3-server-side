@@ -1,6 +1,7 @@
 // controllers/tutorController.js
 import Tutor from '../models/tutor.js';
 import bcrypt from 'bcrypt';
+import Pet from '../models/pet.js';
 
 export const registerTutor = async (req, res) => {
     const { email, senha } = req.body;
@@ -75,3 +76,18 @@ export const deleteTutor = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Função para consultar pets por tutor
+export const getPetsByTutorId = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const tutor = await Tutor.findByPk(id, { include: Pet });
+      if (tutor) {
+        res.status(200).json(tutor.Pets);
+      } else {
+        res.status(404).json({ error: 'Tutor not found' });
+      }
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  };

@@ -2,6 +2,7 @@
 import express from 'express';
 import { registerTutor, getTutors, getTutorById, updateTutor, deleteTutor } from '../controllers/tutorController.js';
 import authMiddleware from '../middleware/authMiddleware.js';
+import Pet from '../models/pet.js';
 
 const router = express.Router();
 

@@ -1,32 +1,38 @@
 // models/tutor.js
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
+import Pet from './pet.js';
 
-class Tutor extends Model {}
-
-Tutor.init({
-  cpf: {
-    type: DataTypes.STRING(11),
-    allowNull: false
+const Tutor = sequelize.define('Tutor', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
   nome: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
+    unique: true,  // Garantir que o email seja único
+  },
+  cpf: {
+    type: DataTypes.STRING(11),  // Especifica o tamanho do CPF para validação
+    allowNull: false,
+    unique: true,  // Garantir que o CPF seja único
   },
   senha: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING,  // Adicionar campo para a senha
+    allowNull: false,
   }
 }, {
-  sequelize,
-  modelName: 'tutor',
-  tableName: 'TUTORS',  // Assegure-se de definir o nome da tabela se estiver usando maiúsculas
-  timestamps: false  // Ajuste conforme a necessidade de createdAt e updatedAt
+  tableName: 'tutors',  // Garantir que o nome da tabela esteja correto
+  timestamps: false,    // Desativa os timestamps se não estiverem sendo usados
 });
+
+Tutor.hasMany(Pet, { foreignKey: 'tutorId' });  // Associação com a tabela Pet
+Pet.belongsTo(Tutor, { foreignKey: 'tutorId' });  // Associação inversa
 
 export default Tutor;
