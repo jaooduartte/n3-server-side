@@ -52,7 +52,7 @@ Authorization: Bearer {{tokenacc.response.body.token}}
   "codigo_pet": "PET123",
   "nome_pet": "Rex",
   "genero_pet": "Masculino",
-  "altura_valor": 20.0,
+  "altura_valor": 8.0,
   "tutorId": 2
 }
 
@@ -85,3 +85,6 @@ Authorization: Bearer {{tokenacc.response.body.token}}
 GET http://localhost:3000/tutors/1/pets
 Authorization: Bearer {{tokenacc.response.body.token}}
 
+### Consultar Pets por Altura
+GET http://localhost:3000/altura/1/pets
+Authorization: Bearer {{tokenacc.response.body.token}}

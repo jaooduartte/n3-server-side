@@ -1,6 +1,6 @@
 import express from 'express';
-import { getPetsByAlturaId } from '../controllers/alturaController.js';
 import authenticateJWT from '../middleware/authMiddleware.js';
+import { getPetsByAlturaId } from '../controllers/alturaController.js';
 
 const router = express.Router();
 

@@ -1,17 +1,18 @@
-import db from '../models/index.js';
 
-const { Pet, Altura } = db;
+import Pet from '../models/pet.js';
 
 export const getPetsByAlturaId = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const altura = await Altura.findByPk(id, { include: Pet });
-    if (altura) {
-      res.status(200).json(altura.Pets);
-    } else {
-      res.status(404).json({ error: 'Altura not found' });
+    try {
+        const { id } = req.params; 
+        const pets = await Pet.findAll({
+            where: { alturaId: id }
+        });
+        if (pets.length > 0) {
+            res.status(200).json(pets);
+        } else {
+            res.status(404).json({ message: 'No pets found for this height.' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
 };
